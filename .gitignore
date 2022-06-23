@@ -5,3 +5,8 @@
 /.vsconfig
 /JamElympics.sln
 /Temp
+/obj/Debug
+/*.sln
+/*.csproj
+/.vs/jamElimpics/v16
+/*.user
