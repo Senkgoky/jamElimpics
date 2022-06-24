@@ -1,13 +1,22 @@
 Model: Alien.fbx
 Created by: hjnam7936
-Type License: Royalty Free License
+License type: Royalty Free License
 Link: https://www.cgtrader.com/free-3d-models/science/other/x-com-alien
 
 
 
-Model: Knight
+Model: Knight.fbx, Sword.fbx
 Created by: RRFreelance / PiXelBurner
-Type License: Single Entity
+License type: Single Entity
 Link: https://assetstore.unity.com/packages/3d/characters/low-poly-characters-pack-vol1-119306#description
 
 
+Model: TB_MageTower_Lvl4_B.FBX, TB_ArcherTower_Lvl4_A.FBX
+Create by: tarbo studio
+License type: Single Entity
+Link: https://assetstore.unity.com/packages/3d/environments/fantasy/tower-defense-pack-143627#description
+
+Model:
+Create by: Synty Studios
+License type: Restricted Single Entity
+link: https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/polygon-fantasy-rivals-low-poly-3d-art-by-synty-118399#description
