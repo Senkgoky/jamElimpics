@@ -13,14 +13,16 @@ namespace TechDemo
 		private bool _cameraFollowing;
 		private PlayerBehaviour _playerBehaviour;
 
-		public Vector3 myMousePos;
+
+		public Vector3 sumPos;
 
 		// Handling only one player through this input handlers, every player has the same player input controller
 		public void OnInputForClient(IInputWriter inputSerializer)
 		{
 			joystickInputProvider.GetRawInput(out var forwardMovement, out var rightMovement, out var fire, out var jump);
-			Vector3 pos = myMousePos;
-			SerializeInput(inputSerializer, forwardMovement, rightMovement, fire, jump, pos.x, pos.y,pos.z);
+			Vector3 res = FindPosHit(sumPos);
+			SerializeInput(inputSerializer, forwardMovement, rightMovement, fire, jump, res.x, res.y, res.z);
+			sumPos = Vector3.zero;
 		}
 
 		public void OnInputForBot(IInputWriter inputSerializer)
@@ -29,7 +31,7 @@ namespace TechDemo
 
 		private void Update()
 		{
-			myMousePos = Input.mousePosition;
+			sumPos = Input.mousePosition;
 		}
 
 
@@ -68,7 +70,8 @@ namespace TechDemo
 			}
 
 			_playerBehaviour.Move(forwardMovement, rightMovement);
-			FindPosHit(new Vector3(posX,posY,posZ));
+			_playerBehaviour.characterAnimator.transform.localEulerAngles = new Vector3(posX,posY,posZ);
+
 		}
 
 		public Vector3 FindPosHit(Vector3 mousePos)

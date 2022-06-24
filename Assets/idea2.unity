@@ -35194,7 +35194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6355133284986607484, guid: 9be164976fd1e2445a45f5a8f7bddaf5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9be164976fd1e2445a45f5a8f7bddaf5, type: 3}
@@ -41786,6 +41786,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 380385263504395014, guid: ce7e8506a19577e4b81dfcb90f8a54c2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1839463102378329305, guid: ce7e8506a19577e4b81dfcb90f8a54c2, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -41874,7 +41878,7 @@ MonoBehaviour:
   forceNetworkId: 0
   networkId: 11
   predictableFor:
-    playerIndex: -2
+    playerIndex: 1
   visibleFor:
     playerIndex: -3
   stateFrequencyStages:
@@ -44836,7 +44840,7 @@ MonoBehaviour:
     synchronizationEnabled: 1
     tolerance: 0.01
   rotationConfig:
-    synchronizationEnabled: 1
+    synchronizationEnabled: 0
     tolerance: 1
   velocityConfig:
     synchronizationEnabled: 1
@@ -44871,7 +44875,7 @@ MonoBehaviour:
   cam: {fileID: 1128407681}
   joystickInputProvider: {fileID: 4464226772184225368}
   botInputProvider: {fileID: 3529853340845253414}
-  myMousePos: {x: 0, y: 0, z: 0}
+  sumPos: {x: 0, y: 0, z: 0}
 --- !u!114 &3529853340845253414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45032,7 +45036,7 @@ MonoBehaviour:
   cam: {fileID: 1128407681}
   joystickInputProvider: {fileID: 8597691713950635679}
   botInputProvider: {fileID: 8816275099851301857}
-  myMousePos: {x: 0, y: 0, z: 0}
+  sumPos: {x: 0, y: 0, z: 0}
 --- !u!114 &7444544135383775883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45049,7 +45053,7 @@ MonoBehaviour:
     synchronizationEnabled: 1
     tolerance: 0.01
   rotationConfig:
-    synchronizationEnabled: 1
+    synchronizationEnabled: 0
     tolerance: 1
   velocityConfig:
     synchronizationEnabled: 1
