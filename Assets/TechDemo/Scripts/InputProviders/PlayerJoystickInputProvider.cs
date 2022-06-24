@@ -11,7 +11,7 @@ public class PlayerJoystickInputProvider : MonoBehaviour, IInputProvider
 	{
 		forwardMovement = Mathf.Clamp(joystick.Vertical + Input.GetAxis("Vertical"), -1, 1);
 		rightMovement = Mathf.Clamp(joystick.Horizontal + Input.GetAxis("Horizontal"), -1, 1);
-		fire = fireButton.IsPressed || Input.GetMouseButtonDown(0);
+		fire = fireButton.IsPressed || Input.GetMouseButton(0);
 		jump = jumpButton.IsPressed || Input.GetKeyDown(KeyCode.Space);
 		mouseX = Input.mousePosition.x;
 		mouseY = Input.mousePosition.y;

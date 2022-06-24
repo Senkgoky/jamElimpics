@@ -11,7 +11,7 @@ namespace TechDemo
 		private readonly int _fireAnimatorTrigger = Animator.StringToHash("Fire");
 		private readonly int _movingAnimatorBool  = Animator.StringToHash("IsMoving");
 
-		[SerializeField] private Animator       characterAnimator = null;
+		[SerializeField] public Animator       characterAnimator = null;
 		[SerializeField] private float          speed             = 2;
 		[SerializeField] private float          force             = 100;
 		[SerializeField] private float          fireDelay         = 0.68f;
@@ -39,27 +39,32 @@ namespace TechDemo
 		//		characterAnimator.SetTrigger(_fireAnimatorTrigger);
 		//}
 
-		public void Move(float forwardAxis, float rightAxis, float mouseX, float mouseY,Camera cam)
+		public void Move(float forwardAxis, float rightAxis)
 		{
-			if (IsFiring) return;
+			//if (IsFiring) return;
 			Vector3 direction = new Vector3(rightAxis, 0, forwardAxis).normalized;
 			Vector3 velocity = direction * speed;
 			//transform.LookAt(transform.position + velocity);
-			RaycastHit hit;
 
-			if (Physics.Raycast(cam.ScreenPointToRay(new Vector3(mouseX,mouseY,0)), out hit, 1000))
-			{
-				characterAnimator.transform.LookAt(new Vector3(hit.point.x,0,hit.point.z));
-			}
+			
+
+			
 			_rigidbody.velocity = velocity;
 		}
 
 		public void Fire()
 		{
-			characterAnimator.SetBool(_fireAnimatorTrigger,true);
-			Invoke("StopAttack",1f);
-			SpawnBall();
-			////if (IsFiring) return;
+			//characterAnimator.SetBool(_fireAnimatorTrigger,true);
+			//Invoke("StopAttack",1f);
+			if (_timerForFiring > 0)
+			{
+				return;
+            }
+			else
+            {
+				_timerForFiring.Value = fireDelay;
+				SpawnBall();
+            }
 			////_timerForDelay.Value = fireDelay;
 			////_timerForFiring.Value = fireDuration;
 			//_rigidbody.velocity = Vector3.zero;
@@ -85,20 +90,21 @@ namespace TechDemo
 				_destroyActions.Dequeue().Invoke();
 
 			//if (_timerForDelay > 0) DecreaseDelayTimer();
-			//if (_timerForFiring > 0) DecreaseFiringTimer();
+			if (_timerForFiring > 0) DecreaseFiringTimer();
 		}
 
-		//private void DecreaseDelayTimer()
-		//{
-		//	_timerForDelay.Value -= Time.deltaTime;
-		//	//if (_timerForDelay <= 0)
-		//	//{
-		//	//	SpawnBall();
-		//	//	_timerForFiring.Value += _timerForDelay;
-		//	//}
-		//}
+        private void DecreaseDelayTimer()
+        {
+			_timerForFiring.Value -= Time.deltaTime;
+			//_timerForDelay.Value -= Time.deltaTime;
+			//if (_timerForDelay <= 0)
+			//{
+			//    SpawnBall();
+			//    _timerForFiring.Value += _timerForDelay;
+			//}
+		}
 
-		private void DecreaseFiringTimer()
+        private void DecreaseFiringTimer()
 		{
 			_timerForFiring.Value -= Time.deltaTime;
 		}
@@ -111,7 +117,7 @@ namespace TechDemo
 			var newBall = ElympicsInstantiate(ballPrefabName, predictableFor);
 			newBall.transform.position = ballAnchor.transform.position;
 			newBall.transform.rotation = ballAnchor.transform.rotation;
-			newBall.GetComponent<Rigidbody>().AddForce((newBall.transform.forward + newBall.transform.up) * force);
+			newBall.GetComponent<Rigidbody>().AddForce((newBall.transform.forward/* + newBall.transform.up*/) * force);
 		}
 	}
 }
