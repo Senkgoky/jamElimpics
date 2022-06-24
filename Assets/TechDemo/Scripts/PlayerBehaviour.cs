@@ -30,14 +30,14 @@ namespace TechDemo
 		private void Awake()
 		{
 			_rigidbody = GetComponent<Rigidbody>();
-			_timerForDelay.ValueChanged += HandleFireDelayTimerChanged;
+			//_timerForDelay.ValueChanged += HandleFireDelayTimerChanged;
 		}
 
-		private void HandleFireDelayTimerChanged(float lastValue, float newValue)
-		{
-			if (lastValue <= 0 && newValue > 0)
-				characterAnimator.SetTrigger(_fireAnimatorTrigger);
-		}
+		//private void HandleFireDelayTimerChanged(float lastValue, float newValue)
+		//{
+		//	if (lastValue <= 0 && newValue > 0)
+		//		characterAnimator.SetTrigger(_fireAnimatorTrigger);
+		//}
 
 		public void Move(float forwardAxis, float rightAxis)
 		{
@@ -50,10 +50,23 @@ namespace TechDemo
 
 		public void Fire()
 		{
-			if (IsFiring) return;
-			_timerForDelay.Value = fireDelay;
-			_timerForFiring.Value = fireDuration;
+			characterAnimator.SetBool(_fireAnimatorTrigger,true);
+			Invoke("StopAttack",1f);
+			SpawnBall();
+			////if (IsFiring) return;
+			////_timerForDelay.Value = fireDelay;
+			////_timerForFiring.Value = fireDuration;
 			_rigidbody.velocity = Vector3.zero;
+		}
+
+		public void StopAttack()
+        {
+			characterAnimator.SetBool(_fireAnimatorTrigger, false);
+		}
+
+		public void Jump()
+		{
+			_rigidbody.AddForce(Vector3.up*5,ForceMode.Impulse);
 		}
 
 		private Queue<Action> _destroyActions = new Queue<Action>();
@@ -72,11 +85,11 @@ namespace TechDemo
 		private void DecreaseDelayTimer()
 		{
 			_timerForDelay.Value -= Time.deltaTime;
-			if (_timerForDelay <= 0)
-			{
-				SpawnBall();
-				_timerForFiring.Value += _timerForDelay;
-			}
+			//if (_timerForDelay <= 0)
+			//{
+			//	SpawnBall();
+			//	_timerForFiring.Value += _timerForDelay;
+			//}
 		}
 
 		private void DecreaseFiringTimer()

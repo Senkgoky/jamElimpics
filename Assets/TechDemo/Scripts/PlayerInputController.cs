@@ -16,21 +16,22 @@ namespace TechDemo
 		// Handling only one player through this input handlers, every player has the same player input controller
 		public void OnInputForClient(IInputWriter inputSerializer)
 		{
-			joystickInputProvider.GetRawInput(out var forwardMovement, out var rightMovement, out var fire);
-			SerializeInput(inputSerializer, forwardMovement, rightMovement, fire);
+			joystickInputProvider.GetRawInput(out var forwardMovement, out var rightMovement, out var fire, out var jump);
+			SerializeInput(inputSerializer, forwardMovement, rightMovement, fire,jump);
 		}
 
 		public void OnInputForBot(IInputWriter inputSerializer)
 		{
-			botInputProvider.GetRawInput(out var forwardMovement, out var rightMovement, out var fire);
-			SerializeInput(inputSerializer, forwardMovement, rightMovement, fire);
+			botInputProvider.GetRawInput(out var forwardMovement, out var rightMovement, out var fire,out var jump);
+			SerializeInput(inputSerializer, forwardMovement, rightMovement, fire, jump);
 		}
 
-		private static void SerializeInput(IInputWriter inputWriter, float forwardMovement, float rightMovement, bool fire)
+		private static void SerializeInput(IInputWriter inputWriter, float forwardMovement, float rightMovement, bool fire,bool jump)
 		{
 			inputWriter.Write(forwardMovement);
 			inputWriter.Write(rightMovement);
 			inputWriter.Write(fire);
+			inputWriter.Write(jump);
 		}
 
 		public void ElympicsUpdate()
@@ -41,9 +42,18 @@ namespace TechDemo
 			inputReader.Read(out float forwardMovement);
 			inputReader.Read(out float rightMovement);
 			inputReader.Read(out bool fire);
+			inputReader.Read(out bool jump);
 
 			if (fire)
+			{
 				_playerBehaviour.Fire();
+			}
+
+			if (jump)
+			{
+				_playerBehaviour.Jump();
+			}
+
 			_playerBehaviour.Move(forwardMovement, rightMovement);
 		}
 
