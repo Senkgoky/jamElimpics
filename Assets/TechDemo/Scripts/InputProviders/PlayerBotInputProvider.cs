@@ -14,7 +14,7 @@ namespace TechDemo
 			_playerBehaviour = GetComponent<PlayerBehaviour>();
 		}
 
-		public void GetRawInput(out float forwardMovement, out float rightMovement, out bool fire,out bool jump)
+		public void GetRawInput(out float forwardMovement, out float rightMovement, out bool fire,out bool jump, out float mouseX, out float mouseY)
 		{
 			var myPosition = _playerBehaviour.transform.position;
 			var enemyPosition = followedPlayerBehaviour.transform.position;
@@ -25,6 +25,8 @@ namespace TechDemo
 			rightMovement = positionDiff.x;
 			fire = false;
 			jump = false;
+			mouseX = Input.mousePosition.x;
+			mouseY = Input.mousePosition.y;
 		}
 	}
 }

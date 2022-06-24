@@ -16,8 +16,8 @@ MonoBehaviour:
   gameId: fe9b83a9-7d50-4299-859a-93fd313f420b
   gameVersion: 1
   players: 2
-  gameplayScene: Assets/SimpleMenu/Menu.unity
-  gameplaySceneAsset: {fileID: 102900000, guid: 2e70e87bd7f11e1428e673e6f60793fc, type: 3}
+  gameplayScene: Assets/idea2.unity
+  gameplaySceneAsset: {fileID: 102900000, guid: 1c7da9ebfa9b67f48b5c19daa1df1046, type: 3}
   botsInServer: 1
   useWeb: 0
   enableReconnect: 0

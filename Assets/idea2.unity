@@ -7472,7 +7472,7 @@ Transform:
   - {fileID: 1383050983}
   - {fileID: 1710661839}
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &425645792
 PrefabInstance:
@@ -9877,7 +9877,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &697887437
 PrefabInstance:
@@ -22724,7 +22724,7 @@ GameObject:
   - component: {fileID: 1128407680}
   - component: {fileID: 1128407683}
   m_Layer: 0
-  m_Name: Camera (3)
+  m_Name: CameraPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22763,7 +22763,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -22788,14 +22788,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1128407679}
-  m_LocalRotation: {x: 0.0049254997, y: 0.9633537, z: -0.26760226, w: 0.01773152}
-  m_LocalPosition: {x: 0.26, y: 3.13, z: 6.05}
+  m_LocalRotation: {x: 0.4383711, y: -0, z: -0, w: 0.89879405}
+  m_LocalPosition: {x: 0.26, y: 6.48, z: -4.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 29
-  m_LocalEulerAnglesHint: {x: 31.049, y: 897.891, z: 0}
+  m_RootOrder: 34
+  m_LocalEulerAnglesHint: {x: 52, y: 0, z: 0}
 --- !u!114 &1128407683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34885,7 +34885,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4831166965951234, guid: 9be164976fd1e2445a45f5a8f7bddaf5, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4831166965951234, guid: 9be164976fd1e2445a45f5a8f7bddaf5, type: 3}
       propertyPath: m_LocalScale.x
@@ -35458,7 +35458,7 @@ Transform:
   - {fileID: 1928629328}
   - {fileID: 1988276662}
   m_Father: {fileID: 0}
-  m_RootOrder: 34
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: -40.6, z: 0}
 --- !u!1 &1510659807
 GameObject:
@@ -40327,7 +40327,7 @@ Transform:
   - {fileID: 860283571}
   - {fileID: 1346569680}
   m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: -37.892, z: 0}
 --- !u!1001 &1556474797
 PrefabInstance:
@@ -42291,7 +42291,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1881411259
 PrefabInstance:
@@ -44186,8 +44186,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5351793993694438011}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: -0.42, z: 2.82}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -44195,7 +44195,7 @@ Transform:
   - {fileID: 1436672179}
   m_Father: {fileID: 0}
   m_RootOrder: 38
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &63149210097509052
 GameObject:
   m_ObjectHideFlags: 0
@@ -44348,7 +44348,7 @@ MonoBehaviour:
     synchronizationEnabled: 0
     tolerance: 0.01
   useGravityConfig:
-    synchronizationEnabled: 0
+    synchronizationEnabled: 1
     tolerance: 0
 --- !u!114 &3368826187241926185
 MonoBehaviour:
@@ -44467,7 +44467,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 63149210097509052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.462, z: -2.66}
+  m_LocalPosition: {x: 2, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -44575,7 +44575,7 @@ MonoBehaviour:
     synchronizationEnabled: 0
     tolerance: 0.01
   useGravityConfig:
-    synchronizationEnabled: 0
+    synchronizationEnabled: 1
     tolerance: 0
 --- !u!1 &7837704608788906793
 GameObject:

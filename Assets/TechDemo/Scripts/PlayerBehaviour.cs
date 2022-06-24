@@ -39,12 +39,18 @@ namespace TechDemo
 		//		characterAnimator.SetTrigger(_fireAnimatorTrigger);
 		//}
 
-		public void Move(float forwardAxis, float rightAxis)
+		public void Move(float forwardAxis, float rightAxis, float mouseX, float mouseY,Camera cam)
 		{
 			if (IsFiring) return;
 			Vector3 direction = new Vector3(rightAxis, 0, forwardAxis).normalized;
 			Vector3 velocity = direction * speed;
-			transform.LookAt(transform.position + velocity);
+			//transform.LookAt(transform.position + velocity);
+			RaycastHit hit;
+
+			if (Physics.Raycast(cam.ScreenPointToRay(new Vector3(mouseX,mouseY,0)), out hit, 1000))
+			{
+				characterAnimator.transform.LookAt(new Vector3(hit.point.x,0,hit.point.z));
+			}
 			_rigidbody.velocity = velocity;
 		}
 
@@ -56,7 +62,7 @@ namespace TechDemo
 			////if (IsFiring) return;
 			////_timerForDelay.Value = fireDelay;
 			////_timerForFiring.Value = fireDuration;
-			_rigidbody.velocity = Vector3.zero;
+			//_rigidbody.velocity = Vector3.zero;
 		}
 
 		public void StopAttack()
@@ -66,7 +72,7 @@ namespace TechDemo
 
 		public void Jump()
 		{
-			_rigidbody.AddForce(Vector3.up*5,ForceMode.Impulse);
+			_rigidbody.AddForce(Vector3.up*20,ForceMode.Impulse);
 		}
 
 		private Queue<Action> _destroyActions = new Queue<Action>();
@@ -78,19 +84,19 @@ namespace TechDemo
 			while (_destroyActions.Count > 0)
 				_destroyActions.Dequeue().Invoke();
 
-			if (_timerForDelay > 0) DecreaseDelayTimer();
-			if (_timerForFiring > 0) DecreaseFiringTimer();
+			//if (_timerForDelay > 0) DecreaseDelayTimer();
+			//if (_timerForFiring > 0) DecreaseFiringTimer();
 		}
 
-		private void DecreaseDelayTimer()
-		{
-			_timerForDelay.Value -= Time.deltaTime;
-			//if (_timerForDelay <= 0)
-			//{
-			//	SpawnBall();
-			//	_timerForFiring.Value += _timerForDelay;
-			//}
-		}
+		//private void DecreaseDelayTimer()
+		//{
+		//	_timerForDelay.Value -= Time.deltaTime;
+		//	//if (_timerForDelay <= 0)
+		//	//{
+		//	//	SpawnBall();
+		//	//	_timerForFiring.Value += _timerForDelay;
+		//	//}
+		//}
 
 		private void DecreaseFiringTimer()
 		{
