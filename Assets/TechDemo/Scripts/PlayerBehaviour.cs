@@ -3,15 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Elympics;
+using TMPro;
 
-namespace TechDemo
-{
+
 	public class PlayerBehaviour : ElympicsMonoBehaviour, IUpdatable
 	{
 		private readonly int _fireAnimatorTrigger = Animator.StringToHash("Fire");
 		private readonly int _movingAnimatorBool  = Animator.StringToHash("IsMoving");
 
-		[SerializeField] public Animator       characterAnimator = null;
+	public TMP_Text timeText;
+	public TMP_Text scoreText;
+
+	public TMP_Text scoreTextP1;
+	public TMP_Text scoreTextP2;
+
+	public int score;
+
+	public float timeGame;
+
+	public GameObject resultsScreen;
+
+	[SerializeField] public Animator       characterAnimator = null;
 		[SerializeField] private float          speed             = 2;
 		[SerializeField] private float          force             = 100;
 		[SerializeField] private float          fireDelay         = 0.68f;
@@ -19,11 +31,14 @@ namespace TechDemo
 		[SerializeField] private string         ballPrefabName    = "Ball";
 		[SerializeField] private Transform      ballAnchor        = null;
 
-		private readonly ElympicsFloat _timerForDelay  = new ElympicsFloat();
+	private readonly ElympicsFloat gameTime = new ElympicsFloat();
+	private readonly ElympicsFloat _timerForDelay  = new ElympicsFloat();
 		private readonly ElympicsFloat _timerForFiring = new ElympicsFloat();
 
 		private Vector3   _cachedVelocity;
 		private Rigidbody _rigidbody;
+
+		
 
 		private bool IsFiring => _timerForDelay > 0 || _timerForFiring > 0;
 
@@ -38,6 +53,8 @@ namespace TechDemo
 		//	if (lastValue <= 0 && newValue > 0)
 		//		characterAnimator.SetTrigger(_fireAnimatorTrigger);
 		//}
+
+
 
 		public void Move(float forwardAxis, float rightAxis)
 		{
@@ -70,6 +87,22 @@ namespace TechDemo
 			//_rigidbody.velocity = Vector3.zero;
 		}
 
+	public void AddScore()
+    {
+		score++;
+		scoreText.text = score+"";
+
+		if(gameObject.name.Equals("PlayerBlue"))
+        {
+			scoreTextP1.text = score+"";
+        }
+
+		if (gameObject.name.Equals("PlayerRed"))
+		{
+			scoreTextP2.text = score + "";
+		}
+	}
+
 		public void StopAttack()
         {
 			characterAnimator.SetBool(_fireAnimatorTrigger, false);
@@ -91,11 +124,22 @@ namespace TechDemo
 
 			//if (_timerForDelay > 0) DecreaseDelayTimer();
 			if (_timerForFiring > 0) DecreaseFiringTimer();
+
+		gameTime.Value += Time.deltaTime;
+		timeGame = gameTime.Value;
+
+		timeText.text = gameTime.Value + "";
+
+		if (gameTime.Value > 60)
+		{
+			resultsScreen.SetActive(true);
 		}
+	}
 
         private void DecreaseDelayTimer()
         {
 			_timerForFiring.Value -= Time.deltaTime;
+		
 			//_timerForDelay.Value -= Time.deltaTime;
 			//if (_timerForDelay <= 0)
 			//{
@@ -120,4 +164,4 @@ namespace TechDemo
 			newBall.GetComponent<Rigidbody>().AddForce((newBall.transform.forward/* + newBall.transform.up*/) * force);
 		}
 	}
-}
+

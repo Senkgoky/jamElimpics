@@ -8,17 +8,23 @@ public class Enemy : ElympicsMonoBehaviour, IUpdatable
 {
 	private readonly ElympicsInt _ticksAlive = new ElympicsInt();
 
+	private readonly ElympicsFloat destroyDelay = new ElympicsFloat();
+
 	public PlayerBehaviour[] players;
 	public Transform target;
 	public float speed = 20;
 	public Rigidbody _rigidbody;
 
+	public GameObject spawnedExplosion;
+
 	public float energy = 100;
+
 
 	private void Start()
 	{
 		players = GameObject.FindObjectsOfType<PlayerBehaviour>();
 		_rigidbody = GetComponent<Rigidbody>();
+		destroyDelay.Value = 0;
 	}
 
 	public void ElympicsUpdate()
@@ -43,6 +49,15 @@ public class Enemy : ElympicsMonoBehaviour, IUpdatable
 
 			_rigidbody.velocity = (target.position - transform.position).normalized * speed * Time.deltaTime;
 		}
+
+		if(destroyDelay>0)
+        {
+			destroyDelay.Value -= Time.deltaTime;
+			if(destroyDelay<=0)
+            {
+				DestroyEnemy();
+            }
+        }			
 	}
 
 	private void OnCollisionEnter(Collision collision)
@@ -54,9 +69,24 @@ public class Enemy : ElympicsMonoBehaviour, IUpdatable
 
 			if(energy<=0)
             {
-				ElympicsDestroy(gameObject);
-
+				if(collision.gameObject.CompareTag("BlueBall"))
+                {
+					GameObject.Find("PlayerBlue").GetComponent<PlayerBehaviour>().AddScore();
+                }
+				if (collision.gameObject.CompareTag("RedBall"))
+				{
+					GameObject.Find("PlayerRed").GetComponent<PlayerBehaviour>().AddScore();
+				}
+				spawnedExplosion.SetActive(true);
+				GetComponent<Collider>().enabled = false;
+				destroyDelay.Value = 1;
 			}
         }
     }
+
+	public void DestroyEnemy()
+    {
+		ElympicsDestroy(gameObject);
+	}
+
 }

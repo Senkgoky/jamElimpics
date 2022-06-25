@@ -6,12 +6,15 @@ namespace TechDemo
 	[RequireComponent(typeof(PlayerBehaviour))]
 	public class PlayerInputController : ElympicsMonoBehaviour, IInitializable, IInputHandler, IUpdatable
 	{
+		public GameObject gameState = null;
 		[SerializeField] private Camera cam = null;
 		[SerializeField] private PlayerJoystickInputProvider joystickInputProvider = null;
 		[SerializeField] private PlayerBotInputProvider botInputProvider = null;
 
 		private bool _cameraFollowing;
 		private PlayerBehaviour _playerBehaviour;
+
+		//ElympicsInt score;
 
 
 		public Vector3 sumPos;
@@ -86,11 +89,23 @@ namespace TechDemo
 			return result;
 		}
 
+		public void OnMatchJoined(string matchId)
+		{
+			Debug.Log($"!!!!!!!!!!!!!!!!!!!!!!!!! Match joined");
+		}
+
 		public void Initialize()
 		{
 			_playerBehaviour = GetComponent<PlayerBehaviour>();
 			InitializeCameraFollowing();
+
+			//score.ValueChanged += PuntajeChanged(int lastValue, );
 		}
+
+		public void PuntajeChanged()
+        {
+
+        }
 
 		private void InitializeCameraFollowing()
 		{
